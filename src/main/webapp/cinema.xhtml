@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Movies</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:outputLabel for="movieName" styleClass="block">Movie Name : </p:outputLabel>
+		<p:inputText id="movieName" value="#{cinemaBean.movieName}" />
+
+		<p:commandButton value="Submit"
+			actionListener="#{cinemaBean.addMovie}" update="movieDT" />
+
+
+		<div class="card">
+			<p:dataTable id="movieDT" var="movie" value="#{cinemaBean.movies}">
+				<p:column headerText="Id">
+					<h:outputText value="#{movie.id}" />
+				</p:column>
+
+				<p:column headerText="Movie Name">
+					<h:outputText value="#{movie.movieName}" />
+				</p:column>
+
+				<p:column>
+					<p:commandButton value="Delete"
+						actionListener="#{cinemaBean.deleteMovie(movie)}" update="movieDT" />
+				</p:column>
+			</p:dataTable>
+		</div>
+	</h:form>
+
+</h:body>
+</html>
